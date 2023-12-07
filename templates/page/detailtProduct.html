@@ -1,0 +1,124 @@
+{% load static tailwind_tags %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include 'components/fontawesome.html' %}
+    <title>{{ product.name }}-{{ product.model }}</title>
+    <link rel="stylesheet" href="{% static 'CSS/detailtProduct.css' %}" />
+    <script defer src="{% static 'JS/detailtProduct.js' %}"></script>
+    {% tailwind_css %}
+  </head>
+
+  <body>
+    {% include 'components/header.html' %}
+
+    <main class="container mx-auto p-3 mt-10 py-8">
+      <section class="produc container">
+        <div class="produc_containt p-2 lg:flex">
+          <div class="flex" style="height: 300px; overflow: hidden">
+            <!-- Contenedor de imágenes -->
+            <div class="product_images">
+              {% for product_image in product.images.all %}
+              <div class="m-5 cursor-pointer rounded p-1 images-containts">
+                <img
+                  src="{{ product_image.image.url }}"
+                  alt="{{ product.name }}"
+                  width="80px"
+                  height="50px"
+                  class="product_images_list object-cover overflow-hidden"
+                  loading="lazy"
+                />
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- Contenedor de la imagen seleccionada -->
+            <div class="product_image"></div>
+          </div>
+
+          <!-- Información del producto -->
+          <div class="m-4 max-w-screen ms-10">
+            <h1 class="text-3xl font-bold">
+              {{ product.name }}-{{ product.model }}
+            </h1>
+            <hr class="w-full mt-5" />
+            <p class="text-2xl m-5">{{ product.price }}</p>
+            <p class="mt-2"><b>Marca:</b> {{ product.brand }}</p>
+            <p class="mt-2"><b>Modelo:</b> {{ product.model }}</p>
+
+            <!-- Descripción del artículo -->
+            <div class="block mt-2">
+              <b>Sobre este artículo</b>
+              <p class="mt-2">{{ product.description }}</p>
+            </div>
+            <hr class="m-3" />
+            <div class="container">
+              <div id="Add_to_cart">
+                {% csrf_token %}
+                <div class="flex p-3">
+                  <input
+                    type="text"
+                    id="productUuid"
+                    name="product_id"
+                    disabled
+                    value="{{ product.uuid }}"
+                    class="hidden"
+                  />
+                  <label
+                    for="cantidad"
+                    style="margin-right: 5px"
+                    class="relative top-1"
+                    >cantidad:</label
+                  >
+                  <select
+                    name="cantidad"
+                    id="cantidad"
+                    class="rounded-xl text-sm"
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="flex">
+                <button
+                  class="bg-orange-300 p-2 m-3 mt-2 rounded-xl cursor-pointer lg:hover:bg-gray-800 transition-all duration-500 ease-in-out"
+                  type="button"
+                  id="addToCartBtn"
+                >
+                  Agregar al carrito
+                </button>
+
+                <button
+                  class="bg-orange-300 p-2 m-3 mt-2 rounded-xl cursor-pointer lg:hover:bg-gray-800 transition-all duration-500 ease-in-out"
+                  id="Buy_now"
+                >
+                  Comprar ahora
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Video del producto (si está presente) -->
+        {% if product.video %}
+        <div class="w-full">
+          <video class="rounded-2xl w-full" controls>
+            <source src="{{ product.video.url }}" />
+            Tu navegador no soporta el elemento de video.
+          </video>
+        </div>
+
+        {% endif %}
+      </section>
+    </main>
+
+    <footer class="relative sm:mt-20 mt-10">
+      {% include 'components/footer.html' %}
+    </footer>
+  </body>
+</html>

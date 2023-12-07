@@ -1,0 +1,28 @@
+#money > option {
+  background: #1f2937;
+  cursor: pointer;
+}
+
+#money:focus {
+  border: none;
+  outline: none; /* Elimina el contorno predeterminado al enfocar */
+  border-color: #fff; /* Color del borde cuando está activo */
+}
+
+.hidden_menu {
+  position: absolute;
+  top: 0px;
+  right: 1rem;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-100%);
+  transition: transform 0.8s ease;
+}
+
+.menu {
+  transform: translateX(0%);
+  visibility: visible;
+  transition: transform 0.8s ease;
+}
+
+

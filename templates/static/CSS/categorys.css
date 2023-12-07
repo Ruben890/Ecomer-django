@@ -1,0 +1,51 @@
+.conatiner-category {
+  width: 250px;
+}
+.conatiner-category img {
+  border-radius: 10px;
+}
+.conatiner-category > a:hover .hover {
+  opacity: 0.75;
+}
+.category {
+  margin-top: 2rem;
+}
+.conatiner-category p {
+  position: absolute;
+  bottom: 0px;
+  font-size: 18px;
+  padding: 8px;
+}
+
+.hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border-radius: 10px;
+  transition: opacity 0.5s ease;
+}
+
+.category_data {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .category_data {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 2.5px;
+  }
+
+  .conatiner-category {
+    width: 170px;
+    height: 133px;
+  }
+
+  .conatiner-category p {
+    position: absolute;
+    margin: 0px;
+    padding: 8px;
+    text-align: justify;
+  }
+}

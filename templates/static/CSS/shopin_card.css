@@ -1,0 +1,34 @@
+.product-image {
+  width: 100px;
+  object-fit: cover;
+}
+.product-image > hr {
+  color: black;
+}
+.product-image {
+  margin-right: 2rem;
+}
+.shopping-card-contents {
+  position: absolute;
+  right: 0px;
+  width: 365px;
+  height: 500px;
+}
+
+
+
+
+.total-products {
+  width: 1.5rem;
+  position: relative;
+  right: 1.2rem;
+  bottom: 1rem;
+}
+
+.deleteProductBtn > i {
+  color: #202020;
+  transition: color 0.5s;
+}
+.deleteProductBtn:hover > i {
+  color: red;
+}

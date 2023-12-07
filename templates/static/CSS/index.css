@@ -1,0 +1,36 @@
+.top_products > div {
+    width: 180vh;
+    height: 90vh;
+  }
+  
+  .top_products img {
+    border-radius: 10px;
+  }
+  
+  .top_products p {
+    margin-top: 0.5rem;
+  }
+  
+  .top_products {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+  }
+  
+  @media (max-width: 768px) {
+    .top_products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 16px; /* Añadido espacio entre elementos */
+      padding: 8px;
+      justify-content: center; /* Centra los elementos horizontalmente */
+      align-items: center; /* Centra los elementos verticalmente */
+    }
+  
+    .top_products > div {
+      width: 350px;
+      height: 350px;
+      margin: 1rem;
+    }
+  }
+  

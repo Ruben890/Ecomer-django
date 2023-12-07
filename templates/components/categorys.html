@@ -1,0 +1,24 @@
+{% load static %}
+<script defer src="{% static 'JS/categorys.js' %}"></script>
+<div class="text-black">
+  <div class="category_data container mx-auto p-3">
+    {% for category, image in category_data %}
+    <div
+      class="mr-4 conatiner-category cursor-pointer relative text-center text-white"
+    >
+      <a
+        href="#"
+        class="category-link"
+      >
+        <div class="hover bg-black"></div>
+        <img
+          src="{{ image }}"
+          alt="{{ category.category_name }}"
+          class="w-full h-full object-cover"
+        />
+      </a>
+      <p class="font-bold mt-2">{{ category.category_name }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>

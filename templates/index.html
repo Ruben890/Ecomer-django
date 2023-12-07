@@ -1,0 +1,176 @@
+{% load static tailwind_tags %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include 'components/fontawesome.html' %}
+    <title>Home</title>
+    <script defer src="{% static 'JS/carousel.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'CSS/header.css' %}" />
+    <script defer src="{% static 'JS/header.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'CSS/categorys.css' %}" />
+    <link rel="stylesheet" href="{% static 'CSS/index.css' %}" />
+    {% tailwind_css %}
+  </head>
+  <body>
+    {% include 'components/header.html' %}
+     {% include 'components/carousel.html'%}
+    <main class="container mx-auto py-8 mt-20">
+      <h2 class="text-4xl md:text-3xl lg:text-4xl xl:text-4xl font-bold">
+        Comprar por categoria
+      </h2>
+      <section class="conatiner category p-2">
+        {% include "components/categorys.html" %}
+      </section>
+
+      <section class="conatiner gaming p-2">
+        <div class="relative">
+          <div>
+            <a href="#">
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-opacity-75 bg-black"
+                style="border-radius: 10px"
+              >
+                <div class="text-white text-center mx-auto my-auto p-2">
+                  <h1
+                    class="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold"
+                  >
+                    Lorem ipsum, dolor sit
+                  </h1>
+                  <p class="mt-2 text-sm md:text-base lg:text-lg xl:text-xl">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Ullam numquam aliquam possimus voluptas nam natus dicta,
+                    nesciunt vitae explicabo, ea maxime nobis dolor officia
+                    deleniti autem maiores consectetur quasi quos.
+                  </p>
+                  <a
+                    href="#"
+                    class="mt-4 md:mt-0 inline-block px-6 py-3 bg-white rounded text-black text-sm md:text-base lg:text-lg xl:text-xl w-60"
+                  >
+                    button
+                  </a>
+                </div>
+              </div>
+              <img
+                src="https://img.freepik.com/foto-gratis/vista-computadora-personal-3d-estacion-trabajo_23-2150713997.jpg?w=740&t=st=1700774533~exp=1700775133~hmac=8b49e83a68d25b60fb3eff0d7cdd5ae1cf6988df344d8c2345ba6f3e31f9feb0"
+                alt="gaming"
+                class="object-cover w-full mt-20 max-w-screen max-h-screen"
+                style="border-radius: 10px"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div
+        class="flex justify-between container p-2 mx-auto"
+        style="margin-top: 5rem"
+      >
+        <h2
+          class="text-4xl md:text-3xl lg:text-4xl xl:text-4xl font-bold mt-15"
+        >
+          Descubre nuestros productos estrella
+        </h2>
+
+        <a href="#" style="color: #6366f1; text-decoration: underline"
+          >Explora más→</a
+        >
+      </div>
+      <section class="conatiner p-2">
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem
+          illum quidem, quos voluptatibus blanditiis magnam, voluptas quaerat
+          delectus cupiditate, quo vero.
+        </p>
+        <div>
+          <div class="top_products p-2">
+            <div class="conatiner mx-auto py-8 mr-4">
+              <a href="#">
+                <img
+                  src="https://images.unsplash.com/photo-1683823362932-6f7599661d22?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="xbox series X"
+                  class="w-full h-full object-cover"
+                />
+                <p class="font-bold">Xbox Series X</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus, repellat
+                </p>
+              </a>
+            </div>
+            <div class="conatiner mx-auto py-8 mr-4">
+              <a href="#">
+                <img
+                  src="https://images.unsplash.com/photo-1683823362932-6f7599661d22?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="xbox series X"
+                  class="w-full h-full object-cover"
+                />
+                <p class="font-bold">Xbox Series X</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus, repellat
+                </p>
+              </a>
+            </div>
+
+            <div class="conatiner mx-auto py-8 mr-4">
+              <a href="#">
+                <img
+                  src="https://images.unsplash.com/photo-1683823362932-6f7599661d22?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="xbox series X"
+                  class="w-full h-full object-cover"
+                />
+                <p class="font-bold">Xbox Series X</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus, repellat
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="conatiner laptop_acesorios p-2">
+        <div class="relative">
+          <div>
+            <a href="#">
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-opacity-75 bg-black"
+                style="border-radius: 10px"
+              >
+                <div class="text-white text-center mx-auto my-auto p-2">
+                  <h1
+                    class="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold"
+                  >
+                    Lorem ipsum, dolor sit
+                  </h1>
+                  <p class="mt-2 text-sm md:text-base lg:text-lg xl:text-xl">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Dolor minus sint sunt minima rerum obcaecati blanditiis
+                    numquam cupiditate in nam eligendi incidunt, recusandae,
+                    eaque veniam nobis itaque accusamus quod aperiam.
+                  </p>
+                  <a
+                    href="#"
+                    class="mt-4 md:mt-0 inline-block px-6 py-3 bg-white rounded text-black text-sm md:text-base lg:text-lg xl:text-xl w-60"
+                  >
+                    button
+                  </a>
+                </div>
+              </div>
+              <img
+                src="https://img.freepik.com/foto-gratis/vista-computadora-personal-3d-estacion-trabajo_23-2150713997.jpg?w=740&t=st=1700774533~exp=1700775133~hmac=8b49e83a68d25b60fb3eff0d7cdd5ae1cf6988df344d8c2345ba6f3e31f9feb0s"
+                alt="gaming"
+                class="object-cover w-full mt-20 max-w-screen max-h-screen"
+                style="border-radius: 10px"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="relative">{% include "components/footer.html" %}</footer>
+  </body>
+</html>

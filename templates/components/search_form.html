@@ -1,0 +1,30 @@
+{% load static %}
+
+<div class="search mr-4">
+  <form method="get" class="form_search" action="{% url 'search_results' %}">
+    <input
+      type="text"
+      name="search"
+      class="input_search hidden px-4 py-2 rounded-3xl border-none mt-1 text-black"
+      maxlength="150"
+      placeholder="Search"
+      value="{{request.GET.search}}"
+    />
+
+    <button type="reset" class="reset_search hidden px-4 py-2 text-black">
+      <i class="fa-solid fa-x"></i>
+    </button>
+
+    <button type="submit" class="subtmit_search">
+      <span
+        class="hidden sm:hidden md:hidden lg:block px-4 py-2 hover:bg-white hover:text-black rounded-3xl transition-all duration-300"
+      >
+        Search
+      </span>
+
+      <span class="sm:block md:block lg:hidden text-black me-3">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </span>
+    </button>
+  </form>
+</div>

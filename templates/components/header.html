@@ -1,0 +1,127 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'CSS/header.css' %}" />
+<link rel="stylesheet" href="{% static 'CSS/shopin_card.css' %}" />
+<script defer src="{% static 'JS/header.js' %}"></script>
+<script defer type="module" src="{% static 'JS/shopping-card.js' %}"></script>
+<header class="header-container">
+  <nav class="nav-container">
+    <div class="bg-gray-800 text-white">
+      <div class="container mx-auto flex items-center justify-between">
+        <div class="flex items-center">
+          <!-- Aplica las clases de Tailwind CSS al select -->
+          <form method="post"> 
+            {% csrf_token %}
+            <select
+                name="money"
+                id="money"
+                class="cursor-pointer border p-2 rounded-md bg-transparent border-none text-base md:text-lg bg-gray-800"
+                style="width: 5rem"
+                onchange="this.form.submit()">
+                <option value="DOP" {% if selected_currency == 'DO' %}selected{% endif %}>DOP</option>
+                <option value="US" {% if selected_currency == 'US' %}selected{% endif %}>US</option>
+                <option value="EUR" {% if selected_currency == 'EUR' %}selected{% endif %}>EUR</option>
+            </select>
+          </form>
+        
+        </form>
+        </div>
+
+        <div class="me-3">
+          <ul class="flex">
+            <li class="mr-4"><a href="#">Sign in</a></li>
+            <li><a href="#">Sign up</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-orange-300 py-4">
+      <!-- Este div se mostrará en dispositivos móviles y tabletas -->
+
+        <div  class="sm:block md:block lg:hidden" >
+          <div class="flex justify-between items-center p-1">
+            <div class="mr-4">
+              <button type="button" class="menu_mobie" >
+                <i class="fa-solid fa-bars text-2xl"></i>
+              </button>
+            </div>
+            
+            <div class="hidden_menu  bg-white shadow  rounded p-10    z-20  ">
+              <div class="close_mobile_menu_button absolute top-4 left-6">
+                <button>
+                  <i class="fa-solid fa-x text-2xl"></i>
+                </button>
+              </div>
+             <div class="max-w-screen max-h-screen mt-10">
+
+              <div class="mr-4 w-full">
+                {% include "components/search_form.html" %}
+              </div>
+              
+              <ul class="list-none">
+                <li class="mr-4 mt-10"><a href="#">Computadoras y Portátiles</a></li>
+                <li class="mr-4 mt-10"><a href="#">Smartphones</a></li>
+                <li class="mr-4 mt-10"><a href="#">Periféricos</a></li>
+                <li class="mr-4 mt-10"><a href="#">Videojuegos</a></li>
+                <!-- Puedes agregar más opciones aquí -->
+              </ul>
+
+
+              <div class="absolute bottom-10">
+                <div class="">
+                  <div>
+                    <a href="/">
+                      <img src="" alt="logo" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+             </div>
+            </div>
+
+            
+          <div>
+            <a href="/">
+              <img src="" alt="logo" />
+            </a>
+          </div>
+
+          {% include "components/shopin_card.html" %}
+          </div>
+
+
+        </div>
+      <!-- Este div se mostrará solo en computadoras de escritorio -->
+      <div class="hidden sm:hidden md:hidden lg:block">
+        <div class="container mx-auto text-white flex items-center justify-between">
+          <a href="/">
+            <img src="{% static 'path-to-your-logo.png' %}" alt="logo">
+          </a>
+      
+          <ul class="flex list-none">
+            <li class="mr-4"><a href="#">Computadoras y Portátiles</a></li>
+            <li class="mr-4"><a href="#">Smartphones</a></li>
+            <li class="mr-4"><a href="#">Periféricos</a></li>
+            <li class="mr-4"><a href="#">Videojuegos</a></li>
+            <!-- Puedes agregar más opciones aquí -->
+          </ul>
+      
+          <!-- search form-->
+          <div class="flex">
+            <div class="mt-1">
+              <div class="search mr-4 w-full">
+                {% include "components/search_form.html" %}
+              </div>
+            </div>
+      
+            {% include "components/shopin_card.html" %}
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,29 @@
+{% load static %}
+<div class="shopping-card">
+  <button
+    type="button"
+    class="text-white flex items-center px-4 py-2 rounded btn_shopping_card"
+  >
+    <div class="mr-2">
+      <i class="far fa-cart-shopping text-2xl"></i>
+    </div>
+    <p class="total-products bg-red-600 rounded-full"></p>
+  </button>
+
+  <div
+    class="shopping-card-contents hidden relative rounded-2xl rounded-bl-2xl bg-white p-5 z-10 text-black shadow-lg overflow-auto"
+  >
+    <!-- Contenido del carrito aquí -->
+
+    <div style="left: 3%; width: 90%" class="text-black absolute bottom-4">
+      <a href="#">
+        <button
+          type="button"
+          class="Proceed_to_payment w-full bg-orange-300 p-2 m-3 mt-2 rounded-xl cursor-pointer lg:hover:bg-gray-800 transition-all duration-500 ease-in-out"
+        >
+          Proceder al pago
+        </button>
+      </a>
+    </div>
+  </div>
+</div>

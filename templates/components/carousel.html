@@ -1,0 +1,44 @@
+{% load static %}
+<div id="carousel" class="relative overflow-hidden max-w-screen max-h-screen">
+    <button id="btn-back" class="btn-back absolute top-1/2 left-4 transform -translate-y-1/2 bg-black text-white rounded-full p-2 z-10 hidden">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <div id="carousel-container" class="flex transition-transform ease-in-out duration-300">
+        <!-- Imágenes del carrusel -->
+        <div class="w-full relative">
+            <img src="https://cdn.pixabay.com/photo/2023/10/12/12/55/woman-8310751_1280.jpg" alt="Image 1" class="w-full h-full object-cover">
+            <div class="absolute inset-0 flex items-center justify-center bg-opacity-75 bg-black">
+                <div class="text-white text-center mx-auto my-auto">
+                    <h1 class="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">Lorem ipsum, dolor sit</h1>
+                    <p class="mt-2 text-sm md:text-base lg:text-lg xl:text-xl">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
+                        numquam aliquam possimus voluptas nam natus dicta, nesciunt vitae
+                        explicabo, ea maxime nobis dolor officia deleniti autem maiores
+                        consectetur quasi quos.
+                    </p>
+                    <a href="#" class="mt-4 inline-block px-6 py-3 bg-white rounded text-black text-sm md:text-base lg:text-lg xl:text-xl w-60">button</a>
+                </div>
+            </div>
+        </div>
+        <!-- Añade más imágenes según sea necesario -->
+
+        <div class="w-full relative hidden">
+            <img src="https://cdn.pixabay.com/photo/2023/11/09/01/25/road-8376079_1280.png" alt="Image 1" class="w-full h-full object-cover">
+            <div class="absolute inset-0 flex items-center justify-center bg-opacity-75 bg-black">
+                <div class="text-white text-center mx-auto my-auto">
+                    <h1 class="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">Lorem ipsum, dolor sit</h1>
+                    <p class="mt-2 text-sm md:text-base lg:text-lg xl:text-xl">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
+                        numquam aliquam possimus voluptas nam natus dicta, nesciunt vitae
+                        explicabo, ea maxime nobis dolor officia deleniti autem maiores
+                        consectetur quasi quos.
+                    </p>
+                    <a href="#" class="mt-4 inline-block px-6 py-3 bg-white rounded text-black text-sm md:text-base lg:text-lg xl:text-xl w-60">button</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="btn-next" class="btn-next absolute top-1/2 right-4 transform -translate-y-1/2 bg-black text-white rounded-full p-2">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+</div>
