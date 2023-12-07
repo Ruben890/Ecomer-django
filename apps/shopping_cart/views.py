@@ -2,67 +2,104 @@ from django.http import JsonResponse, Http404
 from django.views import View
 from django.shortcuts import get_object_or_404, redirect
 from apps.products.models import Product
-from .models import CarritoItem
+from .models import ShoppingCartItem
 from uuid import UUID
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ShoppingCart(View, LoginRequiredMixin):
+    """
+    View for handling shopping cart operations.
+
+    Methods:
+    - get: Gets shopping cart details for the current user.
+    - post: Adds or updates an item in the shopping cart based on the POST request.
+    - get_cart_details: Utility method to get shopping cart details.
+
+    Inherited Attributes:
+    - LoginRequiredMixin: Ensures the user is authenticated to access these views.
+    """
+
     def get(self, request):
-        id_user = request.user.id
-        shopping_cart_items = CarritoItem.objects.filter(user_id=id_user)
-        cart_details = self.get_cart_details(shopping_cart_items, id_user)
+        """
+        Handles GET requests to obtain shopping cart details.
+
+        Returns:
+        JsonResponse: Shopping cart details in JSON format.
+        """
+        # Get the ID of the current user
+        user_id = request.user.id
+        # Filter cart items for the current user
+        shopping_cart_items = ShoppingCartItem.objects.filter(user_id=user_id)
+        # Get cart details and return a JSON response
+        cart_details = self.get_cart_details(shopping_cart_items, user_id)
         return JsonResponse(cart_details, safe=False)
 
     def post(self, request):
-        id_user = request.user.id
-        product_id = request.POST.get('product_id')
-        cantidad = int(request.POST.get('cantidad', 1))  # Default to 1 if cantidad is not provided
+        """
+        Handles POST requests to add or update items in the shopping cart.
 
-        # Verificar si el producto_id se proporciona en la solicitud
+        Returns:
+        JsonResponse: Updated shopping cart details in JSON format.
+        """
+        # Get the ID of the current user
+        user_id = request.user.id
+        # Get product_id and quantity from the POST request
+        product_id = request.POST.get('product_id')
+        quantity = int(request.POST.get('quantity', 1))  # Default to 1 if quantity is not provided
+
+        # Check if product_id is provided in the request
         if not product_id:
-            return JsonResponse({'error': 'Se requiere el parámetro product_id'}, status=400)
+            return JsonResponse({'error': 'The product_id parameter is required'}, status=400)
 
         try:
-            # Verificar si el producto existe
+            # Check if the product exists
             product_uuid = UUID(product_id)
             product = get_object_or_404(Product, uuid=product_uuid)
 
-            # Crear o actualizar el elemento del carrito con la cantidad proporcionada
-            cart_item, created = CarritoItem.objects.get_or_create(user_id=id_user, product=product)
+            # Create or update the cart item with the provided quantity
+            cart_item, created = ShoppingCartItem.objects.get_or_create(user_id=user_id, product=product)
             
-            # Incrementar la cantidad si el elemento ya existe
+            # Increment the quantity if the item already exists
             if not created:
-                cart_item.cantidad += cantidad
+                cart_item.quantity += quantity
             else:
-                cart_item.cantidad = cantidad
+                cart_item.quantity = quantity
 
             cart_item.save()
 
-            shopping_cart_items = CarritoItem.objects.filter(user_id=id_user)
-            cart_details = self.get_cart_details(shopping_cart_items, id_user)
+            # Get the updated cart items
+            shopping_cart_items = ShoppingCartItem.objects.filter(user_id=user_id)
+            # Get cart details and return a JSON response
+            cart_details = self.get_cart_details(shopping_cart_items, user_id)
             return JsonResponse(cart_details, safe=False)
 
-        except Http404:
-            return JsonResponse({'error': 'Producto no encontrado'}, status=404)
-
-        except ValueError:
-            return JsonResponse({'error': 'El valor de product_id no es un UUID válido'}, status=400)
+        except Exception as e:
+            # Catch general exceptions and return a JSON error response
+            return JsonResponse({'error': str(e)}, status=400)
 
     def get_cart_details(self, cart_items, user_id):
+        """
+        Utility method to get shopping cart details.
+
+        Args:
+        cart_items (QuerySet): Cart items for the current user.
+        user_id (int): ID of the current user.
+
+        Returns:
+        dict: Shopping cart details in dictionary format.
+        """
+        # Build the data structure for cart details
         cart_details = []
         for item in cart_items:
             product = item.product
-
-            # Obtener las URL de las imágenes como una lista
-            images_urls = [image.image.url for image in product.images.all()]  # Ajusta 'image' según tu modelo de imágenes
-
+            images_urls = [image.image.url for image in product.images.all()]
             cart_details.append({
                 'product_cart_id': item.id,
                 'product_uuid': product.uuid,
                 'product_name': product.name,
                 'product_images': images_urls,
-                'product_price': str(product.price),  # Convertir DecimalField a string
-                'cantidad': item.cantidad,  # Agregar la cantidad al detalle del carrito
+                'product_price': str(product.price),
+                'quantity': item.quantity,
             })
 
         response_data = {
@@ -72,18 +109,37 @@ class ShoppingCart(View, LoginRequiredMixin):
         return response_data
 
 class DeleteProductCard(View):
-    def get(self, request, id=None):
-        try:
-            if not id:
-                return JsonResponse({'error': 'No se proporcionó un ID válido'}, status=400)
+    """
+    View for handling the removal of a product from the shopping cart.
 
+    Methods:
+    - get: Removes the product from the cart and redirects the user to the homepage.
+    """
+
+    def get(self, request, id=None):
+        """
+        Handles GET requests to remove a product from the shopping cart.
+
+        Args:
+        id (int): ID of the cart item to be removed.
+
+        Returns:
+        JsonResponse or HttpResponseRedirect: JSON error response or redirection to the homepage.
+        """
+        try:
+            # Check if a valid ID is provided
+            if not id:
+                return JsonResponse({'error': 'No valid ID provided'}, status=400)
+
+            # Get the ID of the current user
             user_id = request.user.id
-            cart_item = get_object_or_404(CarritoItem, id=id, user_id=user_id)
+            # Get the cart item by ID and user
+            cart_item = get_object_or_404(ShoppingCartItem, id=id, user_id=user_id)
+            # Remove the cart item
             cart_item.delete()
+            # Redirect to the homepage after removing the product from the cart
             return redirect("/")
         except Exception as e:
-            print(f'Error al borrar el producto del carrito: {e}')
-            return JsonResponse({'error': 'Error interno del servidor'}, status=500)
-
-
-
+            # Log errors using the logging system instead of printing
+            print(f'Error removing product from cart: {e}')
+            return JsonResponse({'error': 'Internal server error'}, status=500)
