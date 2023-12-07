@@ -19,22 +19,28 @@ const createProductCard = (product) => {
     const totalCost = calculateTotalCost(product); // Calculate total cost based on quantity
 
     card.innerHTML = `
-        <div>
-            <a href="/product/detailtProduc/${product.product_uuid}" class="flex my-4 p-2 cursor-pointer w-full">
-                <p style="margin-right: 5px; font-size: 18px" class="relative top-4">${product.cantidad} - </p>
-                <div>
-                    <img src="${product.product_images[0]}" alt="${product.product_name}" class="product-image rounded">
-                </div>
-                <div class="product-details">
-                    <h3 class="product-name">${product.product_name}</h3>
-                    <p class="product-price">Prince:${product.product_price}</p>
-                    <p class="total-cost">Total: ${totalCost}</p> <!-- Display total cost -->
-                </div>
-            </a>
-            <hr>
-            <a href="/shopping_cart/delete/${product.product_cart_id}" class="deleteProductBtn absolute right-0 p-3" style="top: 3rem;">
-                <i class="fa-solid fa-circle-xmark"></i>
-            </a>
+        <div class="relative">
+            <div>
+                <a href="/product/detailtProduc/${product.product_uuid}" class="flex my-4 p-2 cursor-pointer w-full">
+                    <p style="margin-right: 5px; font-size: 18px" class="relative top-4">${product.cantidad} - </p>
+                    <div>
+                        <img src="${product.product_images[0]}" alt="${product.product_name}" class="product-image rounded">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-name">${product.product_name}</h3>
+                        <p class="product-price">Prince:${product.product_price}</p>
+                        <p class="total-cost">Total: ${totalCost}</p> <!-- Display total cost -->
+                    </div>
+                </a>
+                <hr>
+                <a href="/shopping_cart/delete/${product.product_cart_id}" 
+                    class="deleteProductBtn absolute p-3" 
+                    style="top: 1rem;right:0px;
+                ">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </a>
+                
+            </div>
         </div>
     `;
 
