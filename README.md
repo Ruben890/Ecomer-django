@@ -4,8 +4,8 @@ Ecomer is an e-commerce project built with Django, Tawilind CSS, and JavaScript.
 
 ## Screenshots
 
-<img src="./img/imgen-1(1).png" alt="image-1">
-<img src="./img/imgen-1(2).png" alt="image-2">
+![Screenshot 1](./img/imgen-1(1).png)
+![Screenshot 2](./img/imgen-1(2).png)
 
 ## Installation
 
