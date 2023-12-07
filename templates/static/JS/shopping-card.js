@@ -22,7 +22,7 @@ const createProductCard = (product) => {
         <div class="relative">
             <div>
                 <a href="/product/detailtProduc/${product.product_uuid}" class="flex my-4 p-2 cursor-pointer w-full">
-                    <p style="margin-right: 5px; font-size: 18px" class="relative top-4">${product.cantidad} - </p>
+                    <p style="margin-right: 5px; font-size: 18px" class="relative top-4">${product.quantity} - </p>
                     <div>
                         <img src="${product.product_images[0]}" alt="${product.product_name}" class="product-image rounded">
                     </div>
