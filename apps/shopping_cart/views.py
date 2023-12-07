@@ -8,8 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ShoppingCart(View, LoginRequiredMixin):
     def get(self, request):
-
-        
         id_user = request.user.id
         shopping_cart_items = CarritoItem.objects.filter(user_id=id_user)
         cart_details = self.get_cart_details(shopping_cart_items, id_user)

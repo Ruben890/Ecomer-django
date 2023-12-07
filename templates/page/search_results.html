@@ -1,4 +1,4 @@
-{% load static tailwind_tags %} {% load static %}
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,48 +8,51 @@
     <title>Search</title>
     <link rel="stylesheet" href="{% static 'CSS/header.css' %}" />
     <script defer src="{% static 'JS/header.js' %}"></script>
-
     {% tailwind_css %}
   </head>
-<body>
-  {% include 'components/header.html' %}
+  <body>
+    {% include 'components/header.html' %}
 
-  <main class="container mx-auto p-3">
-    <h2 class="text-2xl font-bold mb-4">Search Results</h2>
-    <div class="mt-20">
-      {% if products_search %}
+    <main class="container mx-auto p-3">
+      <h2 class="text-2xl font-bold mb-4">Search Results</h2>
+      <div class="mt-20">
+        {% if products_search %}
         <div>
-          {% for product in products_search %}
-            {% if product.images.all %}
-              <div>
-                <a href="{% url 'detailtProduct' product.uuid %}">
-                  <img src="{{ product.images.first.image.url }}" alt="" />
-                  <div class="container">
-                    <h3>{{ product.name }}-({{ product.model }})</h3>
-                    <p>{{ product.price }}</p>
-                    <p>{{ product.description }}</p>
-                  </div>
-                </a>
+          {% for product in products_search %} {% if product.images.all %}
+          <div>
+            <a
+              href="{% url 'detailtProduct' product.uuid %}"
+              class="flex my-3 p-2 border rounded"
+            >
+              <img
+                src="{{ product.images.first.image.url }}"
+                alt="{{ product.name }}"
+                width="150px"
+                class="rounded-md"
+              />
+              <div class="container mx-auto p-2 ms-5">
+                <h3 class="text-xl lg:text-2xl">{{ product.name }}-({{ product.model }})</h3>
+                <p><b>Princes:</b>{{ product.price }}</p>
+                <p>{{ product.description | truncatechars:150 }}</p>
               </div>
-            {% endif %}
-            <!-- Add more details as needed -->
+            </a>
+          </div>
+          {% endif %}
+          <!-- Add more details as needed -->
           {% endfor %}
         </div>
-      {% else %}
+        {% else %}
         <div class="h-full py-3 flex items-center justify-center">
           <div class="p-5 text-center">
             <p class="text-4xl sm:text-5xl lg:text-6xl">No results found.</p>
           </div>
         </div>
-      {% endif %}
-    </div>
-  </main>
+        {% endif %}
+      </div>
+    </main>
 
-  <footer class="relative sm:mt-20 mt-10">
-    {% include "components/footer.html" %}
-  </footer>
-</body>
-
-</html>
-
+    <footer class="relative sm:mt-20 mt-10">
+      {% include "components/footer.html" %}
+    </footer>
+  </body>
 </html>
