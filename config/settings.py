@@ -150,6 +150,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'templates/static',  
 ]
+STATIC_ROOT = 'staticfiles'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+LOGIN_URL = 'login'  # Ruta para el inicio de sesión
+LOGOUT_URL = 'logout'  # Ruta para el cierre de sesión
+LOGIN_REDIRECT_URL = 'home'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

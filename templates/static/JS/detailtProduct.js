@@ -12,7 +12,6 @@ const extractSrcAttributes = () => {
     productImagesContainer.addEventListener('click', (event) => {
         // Verifica si el elemento clickeado es una imagen dentro del contenedor
         if (event.target.classList.contains('product_images_list')) {
-            console.log('hola')
             // Obtiene los atributos src y alt
             const clickedSrc = event.target.getAttribute('src');
             const clickedAlt = event.target.getAttribute('alt');
@@ -84,8 +83,8 @@ async function addToCart() {
             const cartDetails = await response.json();
             handleSuccessfulCartAddition(cartDetails);
         } else {
-            if (response.status == 500) {
-                location.href = '/login'
+            if (response.status == 500 || response.status == 400) {
+                location.href = '/auth/login'
             }
             handleFailedCartAddition();
         }

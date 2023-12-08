@@ -9,6 +9,7 @@ urlpatterns = [
     path("", HomePage.as_view(), name='home'),
     path("product/", include('apps.products.url'), name='product'),
     path('shopping_cart/', include('apps.shopping_cart.url')),
+    path('auth/', include('apps.users.url'), name='auth'),
     path("__reload__/", include("django_browser_reload.urls")),  # Django-tailwind
 ]
 

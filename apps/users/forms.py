@@ -14,7 +14,7 @@ class LoginForm(AuthenticationForm):
 class CreateUsersForm(forms.ModelForm):
     class Meta:
         model = Profiles
-        fields = ['email', 'first_name', 'last_name', 'image', 'DNI','Tel', 'gender', 'roles', 'country', 'address']
+        fields = ['email', 'first_name', 'last_name', 'image', 'Tel', 'gender', 'roles', 'country', 'address']
 
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'Email'})

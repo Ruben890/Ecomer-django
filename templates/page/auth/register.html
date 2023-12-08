@@ -1,0 +1,22 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include 'components/fontawesome.html' %}
+    <title>Sing up</title>
+  </head>
+  <body>
+    <main class="container mx-auto">
+      <form action="post">
+        {% csrf_token %}
+        <div class="container">{{form.as_p}}</div>
+
+        <div>
+          <button type="submit">Register</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
