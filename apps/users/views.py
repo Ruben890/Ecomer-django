@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import FormView
 from .forms import LoginForm, CreateUsersForm
@@ -33,5 +34,5 @@ class Register(FormView):
 
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return reverse_lazy('home')
+            return redirect('home')  # Corrected redirection
         return super(Register, self).get(*args, **kwargs)
