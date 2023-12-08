@@ -77,7 +77,7 @@ async function addToCart() {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'X-CSRFToken': getCookie('csrftoken'), // Asegúrate de tener una función getCookie para obtener el token CSRF
             },
-            body: `product_id=${productUuid}&cantidad=${cantidad}`, // Ajusta según tu estructura de datos
+            body: `product_id=${productUuid}&quantity=${cantidad}`, // Ajusta según tu estructura de datos
         });
 
         if (response.ok) {

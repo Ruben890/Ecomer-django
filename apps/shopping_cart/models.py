@@ -8,5 +8,5 @@ class ShoppingCartItem(models.Model):
     quantity = models.PositiveIntegerField(default=1, verbose_name="quantity")
 
     def __str__(self):
-        return f'{self.user.email} - {self.product.name} - {self.cantidad}'
+        return f'{self.user.email} - {self.product.name} - {self.quantity}'
     

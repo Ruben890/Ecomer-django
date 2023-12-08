@@ -49,7 +49,7 @@ const createProductCard = (product) => {
 
 const calculateTotalCost = (product) => {
     // Parse quantity as integer (use default value 1 if undefined)
-    const quantity = parseInt(product.cantidad) || 1;
+    const quantity = parseInt(product.quantity) || 1;
     // Parse product price as float (use default value 0 if undefined)
     const price = parseFloat(product.product_price) || 0;
 
@@ -66,7 +66,7 @@ const populateCartContainer = (cartContainer, cartItems) => {
         cartContainer.appendChild(card);
 
         // Update totalProducts based on quantity
-        totalProducts += parseInt(product.cantidad) || 1;
+        totalProducts += parseInt(product.quantity) || 1;
     });
 
     // Update the display of totalProducts
