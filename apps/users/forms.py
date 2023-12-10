@@ -24,9 +24,6 @@ class CreateUsersForm(forms.ModelForm):
         widget=forms.PasswordInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'Password'})
     )
 
-    Confirm_Password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'Confirm Password'})
-    )
     first_name = forms.CharField(
         max_length=100,  widget=forms.TextInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'First Name'})
     )
@@ -34,7 +31,7 @@ class CreateUsersForm(forms.ModelForm):
         max_length=100, widget=forms.TextInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'Last Name'})
     )
     image = forms.ImageField(
-        required=False, widget=forms.FileInput(attrs={'class': 'border p-2 w-full'})
+        required=False, widget=forms.FileInput(attrs={'class': 'border p-2 w-full mb-4'})  # Added margin-bottom
     )
     Tel = forms.CharField(
         max_length=10, widget=forms.TextInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'Phone', 'type': 'tel'})

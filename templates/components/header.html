@@ -27,12 +27,26 @@
         </form>
         </div>
 
+        {% if request.user.is_authenticated %}
         <div class="me-3">
-          <ul class="flex">
-            <li class="mr-4"><a href="/auth/login">Sign in</a></li>
-            <li><a href="/auth/register">Sign up</a></li>
-          </ul>
+            <ul class="flex">
+                <li class="mr-4">
+                  <a href="#">{{ request.user }}</a>
+                </li>
+                <li>
+                  <a href="{% url "logout" %}">logout</a>
+                </li>  <!-- Corregido a "logout" -->
+            </ul>
         </div>
+    {% else %}
+        <div class="me-3">
+            <ul class="flex">
+                <li class="mr-4"><a href="{% url "login" %}">Sign in</a></li>
+                <li><a href="{% url "register" %}">Sign up</a></li>
+            </ul>
+        </div>
+    {% endif %}
+    
       </div>
     </div>
 
