@@ -56,7 +56,10 @@ class CreateUsersForm(forms.ModelForm):
         choices=GENDER_CHOICES, widget=forms.Select(attrs={'class': 'border p-2 w-full'}),
         label='Gender'
     )
-    
+
+    roles = forms.IntegerField(
+        widget=forms.Select(choices=ROLES_CHOICES, attrs={'class': 'border p-2 w-full'})
+    )
     country = forms.CharField(
         max_length=150, widget=forms.TextInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'Country'}),
         label='Country'

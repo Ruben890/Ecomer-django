@@ -1,0 +1,70 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include 'components/fontawesome.html' %} {% tailwind_css %}
+    <link rel="stylesheet" href="{% static 'CSS/register.css' %}" />
+    <title>Sign up</title>
+  </head>
+  <body>
+    <main class="container mx-auto py-8">
+      <div class="container mx-auto p-3 m-auto lg:shadow-xl rounded-lg">
+        <h1 class="text-2xl flex justify-center mb-6">Regsiter user</h1>
+        <hr class="m-5" />
+        <form action="post" class="">
+          {% csrf_token %}
+          <!-- Left column content -->
+          <div class="flex flex-wrap justify-between registerForm p-5">
+            <div class="w-full md:w-1/2 mb-4">
+              {{ form.email.label_tag }} {{ form.email }}
+            </div>
+
+            <div class="w-full md:w-1/2 mb-4">
+              {{ form.first_name.label_tag }} {{ form.first_name }}
+            </div>
+
+            <div class="w-full md:w-1/2 mb-4">
+              {{ form.last_name.label_tag }} {{ form.last_name }}
+            </div>
+
+            <div class="w-full md:w-1/2 mb-4">
+              {{ form.image.label_tag }} {{ form.image }}
+            </div>
+
+            <!-- Right column content -->
+            <div class="w-full md:w-1/2 mb-4">
+              {{ form.Tel.label_tag }} {{ form.Tel }}
+            </div>
+
+            <div class="w-full md:w-1/2 mb-4">
+              {{ form.gender.label_tag }} {{ form.gender }}
+            </div>
+
+            <div class="w-full md:w-1/2 mb-4">
+              {{ form.roles.label_tag }} {{ form.roles }}
+            </div>
+
+            <div class="w-full md:w-1/2 mb-4">
+              {{ form.country.label_tag }} {{ form.country }}
+            </div>
+
+            <div class="w-full md:w-1/2 mb-4">
+              {{ form.address.label_tag }} {{ form.address }}
+            </div>
+
+            <div class="w-full mb-4">
+              {{ form.password.label_tag }} {{ form.password }}
+            </div>
+          </div>
+          <div class="w-full flex justify-center">
+            <button class="bg-blue-500 text-white p-3 w-80 rounded-xl">
+              Sign in
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
