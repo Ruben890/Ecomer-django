@@ -1,6 +1,7 @@
-.conataier_form_login input {
+.registerForm input,
+select,
+option {
   border-radius: 8px;
-  margin-bottom: 2rem;
 }
 
 .errorlist {

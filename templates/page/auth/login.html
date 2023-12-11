@@ -11,15 +11,41 @@
     {% tailwind_css %}
     <title>Sign in</title>
   </head>
-  <body>
-    <main class="container mx-auto">
-      <div class="container p-3 m-3 lg:shadow ">
+  <body class="bg-gray-50">
+    <main class="flex items-center justify-center h-screen">
+      <div
+        class="container mx-auto p-3 m-auto  lg:shadow-xl rounded-lg"
+      >
         <form method="post" id="form_login">
           {% csrf_token %}
 
-          <div class="mb-4 conataier_form_login">{{form}}</div>
-          <div>
-            <button class="bg-blue-500 text-white p-2">Sign in</button>
+          <h1 class="text-center text-3xl p-5">Login</h1>
+          <hr />
+
+          <div class="mb-4 conataier_form_login w-full p-5">
+            {{form}}
+            <a href="{% url "register" %}" class="text-blue-700 underline relative bottom-5">Sign Up</a>
+
+            <div class="lg:w-80">
+              <div
+                class="shadow p-3 rounded-xl lg:hover:shadow-xl transition-all cursor-pointer"
+              >
+                <a href="#" class="flex">
+                  <img
+                    src="https://cdn.icon-icons.com/icons2/729/PNG/512/google_icon-icons.com_62736.png"
+                    alt="icons google"
+                    width="50px"
+                  />
+                  <p class="mt-3 ms-5">Iniciar seccion con google</p>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center">
+            <button class="bg-blue-500 text-white p-3 w-80 rounded-xl">
+              Sign in
+            </button>
           </div>
         </form>
       </div>
