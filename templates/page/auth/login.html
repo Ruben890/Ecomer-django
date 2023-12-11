@@ -14,7 +14,7 @@
   <body class="bg-gray-50">
     <main class="flex items-center justify-center h-screen">
       <div
-        class="container mx-auto p-3 m-auto  lg:shadow-xl rounded-lg"
+        class="container mx-auto p-8 lg:w-80 m-auto  lg:shadow-xl rounded-lg"
       >
         <form method="post" id="form_login">
           {% csrf_token %}
@@ -24,11 +24,11 @@
 
           <div class="mb-4 conataier_form_login w-full p-5">
             {{form}}
-            <a href="{% url "register" %}" class="text-blue-700 underline relative bottom-5">Sign Up</a>
+            <a href="{% url "register" %}" class="text-blue-700 underline relative bottom-5">Sign up</a>
 
-            <div class="lg:w-80">
+            <div class="w-full">
               <div
-                class="shadow p-3 rounded-xl lg:hover:shadow-xl transition-all cursor-pointer"
+                class="shadow  p-2 rounded-xl lg:hover:shadow-xl transition-all cursor-pointer"
               >
                 <a href="#" class="flex">
                   <img

@@ -1,38 +1,42 @@
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from django.views import View
 from django.contrib.auth.views import LoginView
-from django.views.generic.edit import FormView
 from .forms import LoginForm, CreateUsersForm
 from django.contrib.auth import login
 
-# ? Auth AUTHENTICATION
-# * Vista para el inicio de sesión
-class Login(LoginView):
+# Vista para el inicio de sesión
+class CustomLoginView(LoginView):
     template_name = 'page/auth/login.html'
-    fields = '__all__'
     authentication_form = LoginForm
     redirect_authenticated_user = True
 
     def get_success_url(self):
         return reverse_lazy('home')
 
-# *Vista para el registro de usuario
-
-
-class Register(FormView):
-    fields = '__all__'
+# Vista para el registro de usuario
+class CreateUsersView(View):
     template_name = 'page/auth/register.html'
-    form_class = CreateUsersForm
-    redirect_authenticated_user = True
-    success_url = reverse_lazy('home')
 
-    def form_valid(self, form):
-        user = form.save()
-        if user is not None:
-            login(self.request, user)
-        return super(Register, self).form_valid(form)
+    def get(self, request):
+        form = CreateUsersForm()
+        return render(request, self.template_name, {'form': form})
 
-    def get(self, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return redirect('home')  # Corrected redirection
-        return super(Register, self).get(*args, **kwargs)
+    def post(self, request):
+        form = CreateUsersForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = self.process_valid_form(form)
+            if user:
+                self.login_user(request, user)
+                return redirect('home')
+        return render(request, self.template_name, {'form': form})
+
+    def process_valid_form(self, form):
+        user = form.save(commit=False)
+        user.is_active = True
+        user.set_password(form.cleaned_data['password'])
+        user.save()
+        return user
+
+    def login_user(self, request, user):
+        login(request, user)

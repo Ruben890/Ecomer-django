@@ -43,10 +43,6 @@
             </div>
 
             <div class="w-full md:w-1/2 mb-4">
-              {{ form.roles.label_tag }} {{ form.roles }}
-            </div>
-
-            <div class="w-full md:w-1/2 mb-4">
               {{ form.country.label_tag }} {{ form.country }}
             </div>
 
@@ -58,6 +54,22 @@
               {{ form.password.label_tag }} {{ form.password }}
             </div>
           </div>
+
+          <div class="w-full lg:w-80 m-3">
+            <div
+              class="shadow  p-2 rounded-xl lg:hover:shadow-xl transition-all cursor-pointer"
+            >
+              <a href="#" class="flex">
+                <img
+                  src="https://cdn.icon-icons.com/icons2/729/PNG/512/google_icon-icons.com_62736.png"
+                  alt="icons google"
+                  width="50px"
+                />
+                <p class="mt-3 ms-5">Iniciar seccion con google</p>
+              </a>
+            </div>
+          </div>
+
           <div class="w-full flex justify-center">
             <button class="bg-blue-500 text-white p-3 w-80 rounded-xl">
               Sign in
