@@ -3,11 +3,9 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .choices import GENDER_CHOICES, ROLES_CHOICES
 from django.utils.translation import gettext_lazy as _
 
-
 from .managers import CustomAccountManager
 
-
-class Profiles(AbstractBaseUser ,PermissionsMixin):
+class Profiles(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True, max_length=50)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -25,18 +23,16 @@ class Profiles(AbstractBaseUser ,PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
+    objects = CustomAccountManager()
+
+    def get_username(self):
+        return self.email
+
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
     def has_perm(self, perm, obj=None):
-        if self.is_staff:
-            return True
-        
+        return self.is_staff
+
     def has_module_perms(self, app_label):
         return self.is_staff
-    
-    class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
-
-

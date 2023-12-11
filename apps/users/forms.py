@@ -14,23 +14,26 @@ class LoginForm(AuthenticationForm):
     )
 
 class CreateUsersForm(forms.ModelForm):
-    password_confirmation = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'Confirm Password'}),
-        label='Confirm Password'
-    )
+    
 
     class Meta:
         model = Profiles
-        fields = ['email', 'first_name', 'last_name', 'image', 'Tel', 'gender', 'roles', 'country', 'address']
+        fields = ['email', 'first_name', 'last_name', 'image', 'Tel', 'gender',  'country', 'address']
 
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'Email'}),
         label='Email'
     )
     
+
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'Password'}),
         label='Password'
+    )
+
+    password_confirmation = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'border p-2 w-full', 'placeholder': 'Confirm Password'}),
+        label='Confirm Password'
     )
 
     first_name = forms.CharField(
