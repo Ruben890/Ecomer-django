@@ -176,5 +176,13 @@ ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 # # Configuración para personalizar las vistas de allauth
 # ACCOUNT_ADAPTER = 'tu_app.adapter.CustomAccountAdapter'
 
+
+# # Dirección de correo electrónico del servidor para enviar mensajes de error a los administradores
+# SERVER_EMAIL = 'error@dominio.com'
+
+
+# # Dirección de correo electrónico predeterminada para enviar notificaciones
+# DEFAULT_FROM_EMAIL = 'tu_correo@dominio.com'
+
 # Configuración del formulario de registro personalizado
 ACCOUNT_FORMS = {'signup': 'apps.users.forms.CreateUsersForm'}
