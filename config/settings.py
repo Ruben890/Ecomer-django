@@ -43,7 +43,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
@@ -154,7 +153,7 @@ LOGOUT_REDIRECT_URL = 'login'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_URL_OVERLOAD = 'home'
 # Configuración de las redirecciones de URLs de allauth
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
@@ -165,6 +164,17 @@ ACCOUNT_CHANGE_PASSWORD_REDIRECT_URL = LOGIN_REDIRECT_URL
 # Configuración de las plantillas de allauth con prefijo 'auth/'
 ACCOUNT_TEMPLATE_PREFIX = 'account/'
 
+# Configuración de la plantilla de correo electrónico para la confirmación de correo electrónico
+ACCOUNT_EMAIL_CONFIRMATION_SUBJECT = 'Confirma tu dirección de correo electrónico en Ecomer'
+ACCOUNT_EMAIL_CONFIRMATION_SUBJECT_TEMPLATE = 'account/email/confirmation_signup_subject.txt'
+ACCOUNT_EMAIL_CONFIRMATION_MESSAGE = 'account/email/confirmation_signup_message.txt'
 
+# Configuración para permitir el inicio de sesión con la dirección de correo electrónico
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
+# Configuración para personalizar las vistas de allauth
+# ACCOUNT_ADAPTER = 'tu_app.adapter.CustomAccountAdapter'
+
+# Configuración del formulario de registro personalizado
 ACCOUNT_FORMS = {'signup': 'apps.users.forms.CreateUsersForm'}
