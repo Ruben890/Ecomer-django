@@ -34,15 +34,15 @@
                   <a href="#">{{ request.user }}</a>
                 </li>
                 <li>
-                  <a href="{% url "logout" %}">logout</a>
+                  <a href="{% url "account_logout" %}">logout</a>
                 </li>  <!-- Corregido a "logout" -->
             </ul>
         </div>
     {% else %}
         <div class="me-3">
             <ul class="flex">
-                <li class="mr-4"><a href="/accounts/login/">Sign in</a></li>
-                <li><a href="/accounts/signup/">Sign up</a></li>
+                <li class="mr-4"><a href="{% url "account_login" %}">Sign in</a></li>
+                <li><a href="{% url "account_signup" %}">Sign up</a></li>
             </ul>
         </div>
     {% endif %}

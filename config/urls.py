@@ -10,7 +10,6 @@ urlpatterns = [
     path("", HomePage.as_view(), name='home'),
     path("product/", include('apps.products.url'), name='product'),
     path('shopping_cart/', include('apps.shopping_cart.url')),
-    path('logout', LogoutView.as_view(next_page='login'), name='logout'),
     path("__reload__/", include("django_browser_reload.urls")),  # Django-tailwind
     path('accounts/', include('allauth.urls')), # auth social
 ]
