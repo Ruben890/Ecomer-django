@@ -25,7 +25,8 @@ class Profiles(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomAccountManager()
 
-    
+    def get_username(self):
+        return self.email
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
