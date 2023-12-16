@@ -43,8 +43,6 @@ const createImage = (src, alt) => {
             <img 
             src="${src}" 
             alt="${alt}"
-            width="500px"
-            height="400px"
             loading="lazy"
             class="w-full h-full  object-cover rounded-xl"
             />

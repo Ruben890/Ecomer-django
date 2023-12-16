@@ -1,4 +1,5 @@
 {% load static tailwind_tags %} {% load custom_filters %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,38 +14,40 @@
     <main class="container mx-auto p-3">
       <div class="p-3" id="shopping-cart-container">
         {% for shopping_item in shopping_items %}
-        <div class="p-3 m-3 relative">
-          <a
-            href="/shopping_cart/delete/{{ shopping_item.id }}"
-            class="absolute right-3 top-0 text-2xl"
-          >
-            <i class="fa-solid fa-trash"></i>
-          </a>
-          <a href="{% url "detailtProduct" shopping_item.product.uuid %}"
-          target="_blank" 
-          rel="noopener noreferrer">
+        <a
+          href="{% url 'detailtProduct' shopping_item.product.uuid %}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="p-3 m-3 relative">
+            <a
+              href="/shopping_cart/delete/{{ shopping_item.id }}"
+              class="absolute right-3 top-0 text-2xl"
+            >
+              <i class="fa-solid fa-trash"></i>
+            </a>
             <div
               class="container p-3 flex flex-wrap w-full justify-between mt-3"
             >
               {% if shopping_item.product.images.all %}
-              <div class="flex flex-wrap">
-                <img
-                  src="{{ shopping_item.product.images.first.image.url }}"
-                  alt="{{ shopping_item.product.name }}"
-                  width="150px"
-                  class="rounded-md images_product"
-                />
-                <div class="m-3">
-                  <h2 class="text-2xl">
-                    {{ shopping_item.product.name }} -
-                    {{shopping_item.product.model }}
-                  </h2>
-
-                  <p>
-                    {{shopping_item.product.description |truncatechars:70}}
-                  </p>
+              <a href="{% url "detailtProduct" shopping_item.product.uuid %}" target="_blank" rel="noopener noreferrer">
+                <div class="flex flex-wrap">
+                  <img
+                    src="{{ shopping_item.product.images.first.image.url }}"
+                    alt="{{ shopping_item.product.name }}"
+                    width="150px"
+                    class="rounded-md images_product"
+                  />
+                  <div class="m-3">
+                    <h2 class="text-2xl">
+                      {{ shopping_item.product.name }} - {{shopping_item.product.model }}
+                    </h2>
+                    <p>
+                      {{ shopping_item.product.description |truncatechars:70 }}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </a>
               {% endif %}
               <div>
                 <ul>
@@ -65,7 +68,7 @@
                           type="number"
                           name="quantity"
                           id="quantity"
-                          value="{{shopping_item.quantity}}"
+                          value="{{ shopping_item.quantity }}"
                           min="1"
                           max="100"
                           class="rounded-lg"
@@ -79,26 +82,25 @@
                       </div>
                     </form>
                   </li>
-
                   <li class="flex relative mt-3">
                     <b>Precio:</b>
                     <p class="absolute right-12 text-2xl">
-                      {{shopping_item.product.price}}
+                      {{ shopping_item.product.price }}
                     </p>
                   </li>
                   <li class="flex relative mt-3">
                     <b>Subtotal: </b>
                     {% with price=shopping_item.product.price %}
                     <p class="absolute right-12 text-2xl">
-                      {{price|multiply:shopping_item.quantity }}
+                      {{ price|multiply:shopping_item.quantity }}
                     </p>
                     {% endwith %}
                   </li>
                 </ul>
               </div>
             </div>
-          </a>
-        </div>
+          </div>
+        </a>
         <hr />
         {% empty %}
         <div>No items in the shopping cart.</div>
@@ -109,7 +111,7 @@
         <div class="w-100 flex justify-center">
           <button
             type="button"
-            class="bg-orange-300 rounded-lg p-3 text-xl w-80"
+            class="bg-orange-300 rounded-lg p-3 text-xl w-80 lg:hover:bg-gray-800 transition-all duration-500 ease-in-out"
           >
             Proceder al pago
           </button>

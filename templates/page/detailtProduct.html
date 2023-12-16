@@ -18,7 +18,7 @@
     <main class="container mx-auto p-3 mt-10 py-8">
       <section class="produc container">
         <div class="produc_containt p-2 lg:flex">
-          <div class="flex" style="height: 300px; overflow: hidden">
+          <div class="flex">
             <!-- Contenedor de imágenes -->
             <div class="product_images">
               {% for product_image in product.images.all %}
@@ -40,12 +40,11 @@
           </div>
 
           <!-- Información del producto -->
-          <div class="m-4 max-w-screen ms-10">
+          <div class="m-4 max-w-screen ms-10 info_product">
             <h1 class="text-3xl font-bold">
               {{ product.name }}-{{ product.model }}
             </h1>
             <hr class="w-full mt-5" />
-            <p class="text-2xl m-5">Price: {{ product.price }}</p>
             <p class="mt-2"><b>Marca:</b> {{ product.brand }}</p>
             <p class="mt-2"><b>Modelo:</b> {{ product.model }}</p>
 
@@ -55,6 +54,7 @@
               <p class="mt-2">{{ product.description }}</p>
             </div>
             <hr class="m-3" />
+            <p class="text-2xl m-5">Precio: {{ product.price }}</p>
             <div class="container">
               <div id="Add_to_cart">
                 {% csrf_token %}
