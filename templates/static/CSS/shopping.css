@@ -1,0 +1,11 @@
+@media (min-width: 1020px) {
+  .fa-trash {
+    color: #202020;
+    transition: color 0.5s;
+  }
+
+  .fa-trash:hover {
+    color: #e74c3c;
+    transition: color 0.5s;
+  }
+}

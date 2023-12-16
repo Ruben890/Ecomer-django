@@ -33,5 +33,5 @@
   transition: color 0.5s;
 }
 .deleteProductBtn:hover > i {
-  color: red;
+  color: #E74C3C;
 }
