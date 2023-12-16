@@ -30,7 +30,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    name = models.CharField(max_length=100, null=False, blank=False, verbose_name="nombre del producto", unique=True)
+    name = models.CharField(max_length=70, null=False, blank=False, verbose_name="nombre del producto", unique=True)
     model = models.CharField(max_length=100, null=False, blank=False, verbose_name="modelo del producto", unique=True)
     price = models.IntegerField(null=False, blank=False, verbose_name="precio del producto")
     images = models.ManyToManyField(ProductImage, related_name='products', verbose_name="imágenes del producto")
