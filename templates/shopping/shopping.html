@@ -11,9 +11,9 @@
   <body>
     {% include 'components/header.html' %}
     <main class="container mx-auto p-3">
-      <div class="p-3">
+      <div class="p-3" id="shopping-cart-container">
         {% for shopping_item in shopping_items %}
-        <div class="p-3 m-3 relative border rounded-xl">
+        <div class="p-3 m-3 relative cursor-pointer">
           <a
             href="/shopping_cart/delete/{{ shopping_item.id }}"
             class="absolute right-3 top-0 text-2xl"
@@ -30,12 +30,14 @@
                 class="rounded-md images_product"
               />
               <div class="m-3">
-                <h2>
+                <h2 class="text-2xl">
                   {{ shopping_item.product.name }} -
                   {{shopping_item.product.model }}
                 </h2>
 
-                <p>{{shopping_item.product.description | truncatechars:150}}</p>
+                <ps
+                  >{{shopping_item.product.description | truncatechars:70}}</ps
+                >
               </div>
             </div>
             {% endif %}
@@ -74,29 +76,21 @@
                 </li>
                 <li class="flex relative mt-3">
                   <b>Precio: </b>
+                  {% with price=shopping_item.product.price %}
                   <p class="absolute right-12 text-2xl">
-                    {{ shopping_item.product.price }}
+                    {{price|multiply:shopping_item.quantity }}
                   </p>
+                  {% endwith %}
                 </li>
               </ul>
             </div>
           </div>
         </div>
+        <hr />
         {% empty %}
         <div>No items in the shopping cart.</div>
         {% endfor %} {% if shopping_items %}
-        <hr class="m-5" />
-        <div class="m-3">
-          {% for data in shopping_items %} {% with price=data.product.price %}
-          <ul class="flex">
-            <li class="text-2xl">Subtotal para {{ data.product.name }}</li>
-            :
-            <li class="ms-3 text-xl subtotal_price">
-              {{price|multiply:data.quantity }}
-            </li>
-          </ul>
-          {% endwith %} {% endfor %}
-          <hr />
+        <div>
           <p class="text-2xl total_prices">Total:</p>
         </div>
         <div class="w-100 flex justify-center">

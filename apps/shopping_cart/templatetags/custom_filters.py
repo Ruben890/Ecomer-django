@@ -10,9 +10,3 @@ def multiply(value, arg):
     except (TypeError, ValueError):
         return value
     
-@register.filter(name='sum')
-def sum_values(value, arg):
-    try:
-        return float(value) + float(arg)
-    except (TypeError, ValueError):
-        return value
