@@ -153,7 +153,7 @@ AUTHENTICATION_BACKENDS = [
 # }
 
 LOGIN_URL = 'account_login'
-LOGOUT_URL = 'account_logout'
+LOGOUT_URL = 'lagaut'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'account_login'
 

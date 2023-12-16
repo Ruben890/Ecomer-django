@@ -1,6 +1,6 @@
 from django.http import JsonResponse, Http404
 from django.views import View
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from apps.products.models import Product
 from .models import ShoppingCartItem
 from uuid import UUID
@@ -143,3 +143,11 @@ class DeleteProductCard(View):
             # Log errors using the logging system instead of printing
             print(f'Error removing product from cart: {e}')
             return JsonResponse({'error': 'Internal server error'}, status=500)
+
+class ShoppingViews(LoginRequiredMixin, View):
+    template_name = 'shopping/shopping.html'
+
+    def get(self, request, *args, **kwargs):
+        user_id = request.user.id
+        shopping_cart = ShoppingCartItem.objects.filter(user_id=user_id)
+        return render(request, self.template_name, {'shopping_items': shopping_cart})

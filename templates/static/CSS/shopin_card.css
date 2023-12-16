@@ -15,8 +15,11 @@
   height: 500px;
 }
 
-
-
+.not_found_items {
+  font-size: 25px;
+  text-align: center; /* Alinea el texto al centro */
+  margin-top: 10rem; /* Opcional: Agrega espacio superior */
+}
 
 .total-products {
   width: 1.5rem;

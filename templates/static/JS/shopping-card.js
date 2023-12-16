@@ -91,16 +91,20 @@ const shoppingCart = async () => {
         const url = `${base_url}/shopping_cart/`;
 
         const data = await fetchData(url);
-
+        const cartContainers = document.querySelectorAll('.shopping-card-contents');
         if (data && data.cart_items.length > 0) {
-            const cartContainers = document.querySelectorAll('.shopping-card-contents');
-
             cartContainers.forEach(cartContainer => {
                 populateCartContainer(cartContainer, data.cart_items);
             });
         } else {
-            console.log('El carrito está vacío');
+            cartContainers.forEach(cartContainer => {
+                const p_message = document.createElement('p');
+                p_message.classList.add('not_found_items'); // Utiliza add en lugar de classList
+                p_message.textContent = "No items in the shopping cart.";
+                cartContainer.appendChild(p_message);
+            });
         }
+
     } catch (error) {
         throw new Error(error);
     }
