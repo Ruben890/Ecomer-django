@@ -55,7 +55,7 @@ class BaseProductListView(View):
 
         """
         search_query = request.GET.get('search', '')
-        queryset = Product.objects.all()
+        queryset = Product.objects.all().order_by('name')  # Ordena por el campo 'name', ajusta según tus necesidades
 
         if search_query:
             queryset = self.filter_products(queryset, search_query)

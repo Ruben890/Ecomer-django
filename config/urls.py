@@ -11,7 +11,7 @@ urlpatterns = [
     path("product/", include('apps.products.url'), name='product'),
     path('shopping_cart/', include('apps.shopping_cart.url')),
     path("__reload__/", include("django_browser_reload.urls")),  # Django-tailwind
-    path('accounts/', include('allauth.urls')), # auth social
+    path('accounts/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
