@@ -130,6 +130,7 @@ STATIC_ROOT = 'staticfiles'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
