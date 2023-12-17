@@ -2,7 +2,7 @@
 const totalPriceElement = document.querySelector('.total_prices');
 const subtotalPriceElements = document.querySelectorAll('.subtotal_price');
 const quantityButtons = document.querySelectorAll('.increase-quantity, .decrease-quantity');
-const formQuantityElements = document.querySelectorAll('#shopping_item_quantity');
+const formQuantity = document.querySelector('#shopping_item_quantity');
 
 // Inicializar la variable total
 let total = calculateTotal();
@@ -23,10 +23,7 @@ function updateTotalDisplay() {
 
 // Función para enviar la cantidad actualizada al servidor mediante AJAX
 function updateQuantityOnServer(itemId, newQuantity) {
-    const csrfToken = getCsrfToken();
-
-    // Log the request body before sending the fetch request
-    console.log('Request Body:', JSON.stringify({ quantity: newQuantity }));
+    const csrfToken = formQuantity.querySelector('input[name="csrfmiddlewaretoken"]').value;
 
     fetch(`/shopping_cart/update_quantity/${itemId}/`, {
         method: 'POST',
@@ -51,15 +48,7 @@ function updateQuantityOnServer(itemId, newQuantity) {
         });
 }
 
-// Función para obtener el token CSRF
-function getCsrfToken() {
-    let csrfToken = '';
-    formQuantityElements.forEach(formQuantity => {
-        csrfToken = formQuantity.querySelector('input[name="csrfmiddlewaretoken"]').value;
-        // Tu lógica adicional aquí, si es necesario.
-    });
-    return csrfToken;
-}
+
 
 function getItemId(button) {
     const formQuantity = button.closest('form');
@@ -77,7 +66,7 @@ quantityButtons.forEach(button => {
         } else if (button.classList.contains('decrease-quantity') && quantity > 1) {
             quantity -= 1;
         }
-        console.log(itemId)
+        
         inputElement.value = quantity;
         total = calculateTotal();
         updateTotalDisplay();
