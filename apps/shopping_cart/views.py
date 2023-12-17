@@ -151,3 +151,30 @@ class ShoppingViews(LoginRequiredMixin, View):
         user_id = request.user.id
         shopping_cart = ShoppingCartItem.objects.filter(user_id=user_id)
         return render(request, self.template_name, {'shopping_items': shopping_cart})
+
+class UpdateQuantity(View):
+    def post(self, request, id=None):
+        try:
+            if not id:
+                return JsonResponse({'error': 'No valid ID provided'}, status=400)
+
+            user_id = request.user.id
+            cart_item = get_object_or_404(ShoppingCartItem, id=id, user_id=user_id)
+            new_quantity = int(request.POST.get('quantity', 1))
+
+            cart_item.quantity = max(1, new_quantity)
+            cart_item.save()
+
+            # Calcular el subtotal
+            subtotal = cart_item.product.price * cart_item.quantity
+
+            response_data = {
+                'quantity': cart_item.quantity,
+                'subtotal': str(subtotal),
+            }
+
+            return JsonResponse(response_data, safe=False)
+
+        except Exception as e:
+            print(f'Error updating quantity in cart: {e}')
+            return JsonResponse({'error': 'Internal server error'}, status=500)

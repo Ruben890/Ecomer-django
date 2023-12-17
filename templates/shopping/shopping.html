@@ -1,4 +1,4 @@
-{% load static tailwind_tags %} {% load custom_filters %}
+{% load static tailwind_tags %} 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +9,7 @@
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="{% static 'CSS/shopping.css' %}">
     <script defer src="{% static 'JS/shopping.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {% tailwind_css %}
   </head>
   <body>
@@ -21,7 +22,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div class="p-3 m-3 relative">
+          <div class="p-3 m-3 relative shopping-cart">
             <a
               href="/shopping_cart/delete/{{ shopping_item.id }}"
               class="absolute right-3 top-0 text-2xl"
@@ -57,21 +58,21 @@
                     <form method="post" id="shopping_item_quantity">
                       {% csrf_token %}
                       <div>
+                        <input type="text" id="shopping_item_id" value="{{shopping_item.id}}" style="display: none;">
                         <label for="quantity"><b>Cantidad:</b></label>
                         <button
                           type="button"
-                          class="remove_quantitys border rounded-lg p-1"
+                          class="remove_quantity border rounded-lg p-1"
                         >
                           <i class="fa-solid fa-minus"></i>
                         </button>
                         <input
                           style="width: 4.5rem"
-                          disabled
-                          type="number"
+                          disabled type="number"
                           name="quantity"
-                          id="quantity"
+                          id="quantity" 
                           value="{{ shopping_item.quantity }}"
-                          min="1"
+                          min="1" 
                           max="100"
                           class="rounded-lg"
                         />
@@ -86,17 +87,13 @@
                   </li>
                   <li class="flex relative mt-3">
                     <b>Precio:</b>
-                    <p class="absolute right-12 text-2xl">
+                    <p class="price absolute right-12 text-2xl">
                       {{ shopping_item.product.price }}
                     </p>
                   </li>
                   <li class="flex relative mt-3">
-                    <b>Subtotal: </b>
-                    {% with price=shopping_item.product.price %}
-                    <p class="subtotal_price absolute right-12 text-2xl">
-                      {{ price|multiply:shopping_item.quantity }}
-                    </p>
-                    {% endwith %}
+                    <b>Subtotal: </b>  
+                    <p class="subtotal_price absolute right-12 text-2xl"></p>
                   </li>
                 </ul>
               </div>
