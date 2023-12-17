@@ -1,5 +1,5 @@
 {% load static tailwind_tags %} 
-
+{% load custom_filter %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +9,7 @@
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="{% static 'CSS/shopping.css' %}">
     <script defer src="{% static 'JS/shopping.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     {% tailwind_css %}
   </head>
   <body>
@@ -88,12 +88,21 @@
                   <li class="flex relative mt-3">
                     <b>Precio:</b>
                     <p class="price absolute right-12 text-2xl">
-                      {{ shopping_item.product.price }}
+                      {{ shopping_item.product.price|floatformat:2 }}
                     </p>
                   </li>
                   <li class="flex relative mt-3">
-                    <b>Subtotal: </b>  
-                    <p class="subtotal_price absolute right-12 text-2xl"></p>
+                    <b class="mt-1">Subtotal: </b>  
+                    {% with price=shopping_item.product.price|floatformat:2 %}
+                    {% with quantity=shopping_item.quantity %}
+                      {% with subtotal=price|multiply:quantity %}
+                        <p class="subtotal_price text-2xl ms-2 mb-3">
+                          {{ subtotal|floatformat:2 }}
+                        </p>
+                      {% endwith %}
+                    {% endwith %}
+                  {% endwith %}
+                  
                   </li>
                 </ul>
               </div>

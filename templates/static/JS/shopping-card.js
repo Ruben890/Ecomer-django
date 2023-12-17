@@ -88,7 +88,7 @@ const updateTotalProducts = (totalProducts) => {
 const shoppingCart = async () => {
     try {
         const base_url = window.location.origin;
-        const url = `${base_url}/shopping_cart/`;
+        const url = `/shopping_cart/`;
 
         const data = await fetchData(url);
         const cartContainers = document.querySelectorAll('.shopping-card-contents');

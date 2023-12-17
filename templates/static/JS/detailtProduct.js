@@ -66,7 +66,7 @@ async function addToCart() {
         const productUuid = document.getElementById("productUuid").value;
         const cantidad = document.getElementById("cantidad").value;
         const base_url = window.location.origin;
-        const url = `${base_url}/shopping_cart/`;
+        const url = `/shopping_cart/`;
 
         const response = await fetch(url, {
             method: 'POST',

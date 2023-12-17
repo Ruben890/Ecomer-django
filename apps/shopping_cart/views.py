@@ -165,12 +165,8 @@ class UpdateQuantity(View):
             cart_item.quantity = max(1, new_quantity)
             cart_item.save()
 
-            # Calcular el subtotal
-            subtotal = cart_item.product.price * cart_item.quantity
-
             response_data = {
                 'quantity': cart_item.quantity,
-                'subtotal': str(subtotal),
             }
 
             return JsonResponse(response_data, safe=False)
