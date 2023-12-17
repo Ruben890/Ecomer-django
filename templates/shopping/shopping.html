@@ -92,7 +92,7 @@
                   <li class="flex relative mt-3">
                     <b>Subtotal: </b>
                     {% with price=shopping_item.product.price %}
-                    <p class="absolute right-12 text-2xl">
+                    <p class="subtotal_price absolute right-12 text-2xl">
                       {{ price|multiply:shopping_item.quantity }}
                     </p>
                     {% endwith %}
