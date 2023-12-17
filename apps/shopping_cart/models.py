@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.conf import settings
 from apps.products.models import Product
 
@@ -9,4 +10,7 @@ class ShoppingCartItem(models.Model):
 
     def __str__(self):
         return f'{self.user.email} - {self.product.name} - {self.quantity}'
-    
+
+    def clean(self):
+        if not (0 <= self.quantity <= 100):
+            raise ValidationError({'quantity': 'Quantity must be between 0 and 100.'})

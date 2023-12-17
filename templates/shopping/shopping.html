@@ -58,36 +58,39 @@
                     <form method="post" id="shopping_item_quantity">
                       {% csrf_token %}
                       <div>
-                        <input type="text" id="shopping_item_id" value="{{shopping_item.id}}" style="display: none;">
-                        <label for="quantity"><b>Cantidad:</b></label>
-                        <button
-                          type="button"
-                          class="remove_quantity border rounded-lg p-1"
-                        >
-                          <i class="fa-solid fa-minus"></i>
-                        </button>
-                        <input
-                          style="width: 4.5rem"
-                          disabled type="number"
-                          name="quantity"
-                          id="quantity" 
-                          value="{{ shopping_item.quantity }}"
-                          min="1" 
-                          max="100"
-                          class="rounded-lg"
-                        />
-                        <button
-                          type="button"
-                          class="add_quantity border rounded-lg p-1"
-                        >
-                          <i class="fa-solid fa-plus"></i>
-                        </button>
+                          <button
+                              type="button"
+                              class="remove_quantity border rounded-lg p-1 decrease-quantity"
+                          >
+                              <i class="fa-solid fa-minus"></i>
+                          </button>
+                          <input
+                              style="width: 4.5rem"
+                              disabled type="number"
+                              name="quantity"
+                              id="quantity" 
+                              value="{{ shopping_item.quantity }}"
+                              min="1" 
+                              max="100"
+                              class="rounded-lg"
+                          />
+                          <button
+                              type="button"
+                              class="add_quantity border rounded-lg p-1 increase-quantity"
+                          >
+                              <i class="fa-solid fa-plus"></i>
+                          </button>
+                          <input
+                          type="hidden"
+                          name="id_product"
+                          value="{{ shopping_item.id }}"
+                      />
                       </div>
-                    </form>
+                  </form>
                   </li>
                   <li class="flex relative mt-3">
-                    <b>Precio:</b>
-                    <p class="price absolute right-12 text-2xl">
+                    <b class="mt-1">Precio:</b>
+                    <p class="price ms-3 text-2xl">
                       {{ shopping_item.product.price|floatformat:2 }}
                     </p>
                   </li>

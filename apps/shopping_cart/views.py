@@ -4,7 +4,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 from apps.products.models import Product
 from .models import ShoppingCartItem
 from uuid import UUID
+from django.core.exceptions import ValidationError
 from django.contrib.auth.mixins import LoginRequiredMixin
+import json
 
 class ShoppingCart(View, LoginRequiredMixin):
     """
@@ -151,8 +153,9 @@ class ShoppingViews(LoginRequiredMixin, View):
         user_id = request.user.id
         shopping_cart = ShoppingCartItem.objects.filter(user_id=user_id)
         return render(request, self.template_name, {'shopping_items': shopping_cart})
-
-class UpdateQuantity(View):
+    
+class UpdateQuantity(LoginRequiredMixin, View):
+    
     def post(self, request, id=None):
         try:
             if not id:
@@ -160,7 +163,10 @@ class UpdateQuantity(View):
 
             user_id = request.user.id
             cart_item = get_object_or_404(ShoppingCartItem, id=id, user_id=user_id)
-            new_quantity = int(request.POST.get('quantity', 1))
+
+            # Parse JSON data from request.body
+            data = json.loads(request.body)
+            new_quantity = int(data.get('quantity', 1))
 
             cart_item.quantity = max(1, new_quantity)
             cart_item.save()
