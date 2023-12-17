@@ -8,6 +8,7 @@
     {% include 'components/fontawesome.html' %}
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="{% static 'CSS/shopping.css' %}">
+    <script defer src="{% static 'JS/shopping.js' %}"></script>
     {% tailwind_css %}
   </head>
   <body>
@@ -107,7 +108,7 @@
         <div>No items in the shopping cart.</div>
         {% endfor %} {% if shopping_items %}
         <div class="p-3 m-3">
-          <p class="text-2xl total_prices">Total:</p>
+          <p class="text-2xl total_prices"></p>
         </div>
         <div class="w-100 flex justify-center">
           <button
